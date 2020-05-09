@@ -1,0 +1,8 @@
+.main {
+  background-color: rgb(178, 203, 236);
+  font-size: 23px;
+  margin: 1%;
+  padding: 1%;
+  width: 400px;
+  cursor: pointer;
+}

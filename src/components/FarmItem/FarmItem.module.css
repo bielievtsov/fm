@@ -1,0 +1,7 @@
+.main {
+    cursor: pointer;
+    background-color: rgb(80, 255, 255);
+    width: fit-content;
+    width: 300px;
+    margin-top: 1%;
+}
