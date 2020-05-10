@@ -7,16 +7,14 @@ const EditPlanPage = (props) => {
   const [plan, setPlan] = useState({});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [id, setId] = useState(0);
-  const [userId, setUserId] = useState(0);
 
   queryString.parse(props.location.search);
 
   const [isRedirect, setIsRedirect] = useState(true);
 
   const handleChange = (e) => {
-    if ((e.target.name = "name")) setName(e.target.value);
-    if ((e.target.name = "description")) setDescription(e.target.value);
+    if (e.target.name === "name") setName(e.target.value);
+    if (e.target.name === "description") setDescription(e.target.value);
   };
 
   const handleEditSpecificPlan = () => {
@@ -24,29 +22,22 @@ const EditPlanPage = (props) => {
 
     const userId = props.location.state.plan.UserId.Id;
 
-    console.log({
-      "Id": Id,
-      "UserId": {
-        "Id": userId
-      },
-      "Name": name,
-      "Description": description
-    },)
-
-    fetch(`http://localhost:8080/v1/plans/${Id}`, {
+    fetch("http://localhost:8080/v1/plans/" + Id, {
+      body:
+        '{"Id":' +
+        Id +
+        ', "UserId": {"Id": ' +
+        userId +
+        '}, "Name": "' +
+        name +
+        '", "Description": "' +
+        description +
+        '"}',
       headers: {
         "Content-Type": "application/json",
       },
       method: "PUT",
-      body: {
-        "Id": Id,
-        "UserId": {
-          "Id": userId
-        },
-        "Name": name,
-        "Description": description
-      },
-    }).then(data => console.log(data)).then(() => {
+    }).then(() => {
       setIsRedirect(!isRedirect);
     });
   };

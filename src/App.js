@@ -7,6 +7,8 @@ import GuidesPage from "./pages/GuidesPage/GuidesPage";
 import PlanPage from "./pages/PlanPage/PlanPage";
 import EditPlanPage from "./pages/EditPlanPage/EditPlanPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import FarmPage from "./pages/FarmPage/FarmPage";
+import FarmStatistics from "./pages/FarmStatistics/FarmStatistics";
 
 function App() {
   return (
@@ -26,6 +28,12 @@ function App() {
       </Route>
       <Route path="/profile/" exact>
         <ProfilePage></ProfilePage>
+      </Route>
+      <Route path="/profile/farm/:id" exact>
+        <FarmPage></FarmPage>
+      </Route>
+      <Route path="/profile/farm/:id/stats" exact>
+        <FarmStatistics></FarmStatistics>
       </Route>
     </div>
   );
