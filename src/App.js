@@ -9,6 +9,7 @@ import EditPlanPage from "./pages/EditPlanPage/EditPlanPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import FarmPage from "./pages/FarmPage/FarmPage";
 import FarmStatistics from "./pages/FarmStatistics/FarmStatistics";
+import CreateFarm from "./pages/CreateFarm/CreateFarm";
 
 function App() {
   return (
@@ -34,6 +35,12 @@ function App() {
       </Route>
       <Route path="/profile/farm/:id/stats" exact>
         <FarmStatistics></FarmStatistics>
+      </Route>
+      <Route path="/farm/create/" exact>
+        <CreateFarm></CreateFarm>
+      </Route>
+      <Route path="/product/create/" exact>
+        <CreateFarm></CreateFarm>
       </Route>
     </div>
   );

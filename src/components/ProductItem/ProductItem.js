@@ -2,6 +2,12 @@ import React from "react";
 
 const ProductItem = ({ product }) => {
   console.log(product);
+  const handleDelete = () => {
+    console.log(product);
+    fetch("http://localhost:8080/v1/products/" + product.Id, {
+      method: "DELETE",
+    });
+  };
 
   return (
     <div>
@@ -17,6 +23,10 @@ const ProductItem = ({ product }) => {
           new Date(product.Date).getMonth() +
           " day " +
           new Date(product.Date).getDate()}
+      </div>
+      <div>
+        {" "}
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );
