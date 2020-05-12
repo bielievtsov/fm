@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import ProductItem from "../../components/ProductItem/ProductItem";
 
 const FarmPage = (props) => {
@@ -39,26 +39,39 @@ const FarmPage = (props) => {
     setIsRedirect(!isRedirect);
   };
 
-  return (
-    <div>
-      <div>Name : {name}</div>
-      <div>Description : {description}</div>
+  if (isRedirect) {
+    return (
+      <Redirect
+        to={{
+          pathname: `/profile/farm/:${props.location.state.farm.Id}/stats`,
+          state: { farm: props.location.state.farm },
+        }}
+      ></Redirect>
+    );
+  } else {
+    return (
       <div>
-        Date of farm creation :{" "}
-        {new Date(date).getFullYear() +
-          " month " +
-          new Date(date).getMonth() +
-          " day " +
-          new Date(date).getDate()}
+        <div>Name : {name}</div>
+        <div>Description : {description}</div>
+        <div>
+          Date of farm creation :{" "}
+          {new Date(date).getFullYear() +
+            " month " +
+            new Date(date).getMonth() +
+            " day " +
+            new Date(date).getDate()}
+        </div>
+        <button onClick={handleRedirect}>Statistics</button>
+        <div>
+          {products.map((product) => {
+            return (
+              <ProductItem product={product} key={product.Id}></ProductItem>
+            );
+          })}
+        </div>
       </div>
-      <button onClick={handleRedirect}>Statistics</button>
-      <div>
-        {products.map((product) => {
-          return <ProductItem product={product} key={product.Id}></ProductItem>;
-        })}
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default withRouter(FarmPage);
