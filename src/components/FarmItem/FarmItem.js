@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import styles from "./FarmItem.module.css";
 
-const FarmItem = ({ farm, farms }) => {
+const FarmItem = ({ farm, filter }) => {
   const [isRedirect, serIsRedirect] = useState(true);
 
   const handleIsRedirect = () => {
@@ -15,8 +15,7 @@ const FarmItem = ({ farm, farms }) => {
     if (e.target.name === "but") {
       fetch("http://localhost:8080/v1/farms/" + farm.Id, {
         method: "DELETE",
-      });
-      farms.filter((el) => el.Id !== farm.Id);
+      }).then(() => filter(farm.Id));
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import { withRouter, Redirect } from "react-router-dom";
 import ProductItem from "../../components/ProductItem/ProductItem";
+import styles from "./FarmPage.module.css";
 
 const FarmPage = (props) => {
   const [name, setName] = useState("");
@@ -9,6 +10,7 @@ const FarmPage = (props) => {
   const [date, setDate] = useState("new Date()");
   const [products, setProducts] = useState([]);
   const [isRedirect, setIsRedirect] = useState(false);
+  const [isRedirectCreateProduct, setIsRedirectProduct] = useState(false);
 
   queryString.parse(props.location.search);
 
@@ -39,7 +41,25 @@ const FarmPage = (props) => {
     setIsRedirect(!isRedirect);
   };
 
-  if (isRedirect) {
+  const handleRedirectCreateProduct = () => {
+    setIsRedirectProduct(!isRedirectCreateProduct);
+  };
+
+  const filter = (id) => {
+    let pr = products.filter((el) => el.Id !== id);
+    setProducts(pr);
+  };
+
+  if (isRedirectCreateProduct) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/product/create/",
+          state: { farm: props.location.state.farm },
+        }}
+      ></Redirect>
+    );
+  } else if (isRedirect) {
     return (
       <Redirect
         to={{
@@ -51,21 +71,32 @@ const FarmPage = (props) => {
   } else {
     return (
       <div>
-        <div>Name : {name}</div>
-        <div>Description : {description}</div>
-        <div>
-          Date of farm creation :{" "}
-          {new Date(date).getFullYear() +
-            " month " +
-            new Date(date).getMonth() +
-            " day " +
-            new Date(date).getDate()}
+        <div className={styles.header}>
+          <div>Name : {name}</div>
+          <div>Description : {description}</div>
+          <div>
+            Date of farm creation :{" "}
+            {new Date(date).getFullYear() +
+              " month " +
+              new Date(date).getMonth() +
+              " day " +
+              new Date(date).getDate()}
+          </div>
         </div>
-        <button onClick={handleRedirect}>Statistics</button>
-        <div>
+        <div className={styles.buttons}>
+          <button onClick={handleRedirect}>Statistics</button>
+          <button onClick={handleRedirectCreateProduct}>
+            Create new product
+          </button>
+        </div>
+        <div className={styles.main}>
           {products.map((product) => {
             return (
-              <ProductItem product={product} key={product.Id}></ProductItem>
+              <ProductItem
+                product={product}
+                key={product.Id}
+                filter={filter}
+              ></ProductItem>
             );
           })}
         </div>

@@ -1,16 +1,19 @@
 import React from "react";
+import styles from "./ProductItem.module.css";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, filter }) => {
   console.log(product);
   const handleDelete = () => {
     console.log(product);
     fetch("http://localhost:8080/v1/products/" + product.Id, {
       method: "DELETE",
+    }).then(() => {
+      filter(product.Id);
     });
   };
 
   return (
-    <div>
+    <div className={styles.main}>
       <div> Name {product.Name}</div>
       <div> Description {product.Description || "no Description"}</div>
       <div> Quantity {product.Quantity}</div>

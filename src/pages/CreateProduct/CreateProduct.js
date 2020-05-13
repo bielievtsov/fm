@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import queryString from "query-string";
+import { withRouter } from "react-router-dom";
 
-const CreateProduct = () => {
+const CreateProduct = (props) => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
+
+  queryString.parse(props.location.search);
 
   const handleChange = (e) => {
     if ((e.target.name = "desc")) {
@@ -22,17 +26,18 @@ const CreateProduct = () => {
   };
 
   const handleCreation = () => {
+    console.log(quantity, price);
     var bodyData = {
-      "FarmId": {
-        "Id": 2,
+      FarmId: {
+        Id: 4,
       },
-      "PlanId": { "Id": 1 },
-      "Name": name,
-      "Description": description,
-      "Quantity": quantity,
-      "Price": price,
-      "Date": new Date().toJSON(),
-    }
+      PlanId: { Id: 1 },
+      Name: name,
+      Description: description,
+      Quantity: +quantity,
+      Price: +price,
+      Date: new Date().toJSON(),
+    };
     console.log(bodyData);
     fetch("http://localhost:8080/v1/products/", {
       method: "POST",
@@ -66,4 +71,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default withRouter(CreateProduct);

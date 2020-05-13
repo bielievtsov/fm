@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import queryString from "query-string";
 import { withRouter, Redirect } from "react-router-dom";
 import FarmItem from "../../components/FarmItem/FarmItem";
+import styles from "./ProfilePage.module.css";
 
 const ProfilePage = () => {
   const [name, setName] = useState("");
@@ -16,10 +16,11 @@ const ProfilePage = () => {
   const handleRedirect = () => {
     setIsRedirect(!isRedirect);
   };
-  const RedirectCreate = () => {
-    setIsRedirectCreate(!isRedirectCreate);
-  };
 
+  const filter = (id) => {
+    let farmss = farms.filter((el) => el.Id !== id);
+    setFarms(farmss);
+  };
   useEffect(() => {
     fetch(`http://localhost:8080/v1/users/1`)
       .then((data) => data.json())
@@ -48,8 +49,8 @@ const ProfilePage = () => {
     return <Redirect to={{ pathname: `/farm/create/` }}></Redirect>;
   } else {
     return (
-      <div>
-        <div>
+      <div className={styles.header}>
+        <div className={styles.main}>
           <div>
             Name <span>{name}</span> <span>{sname}</span>
           </div>
@@ -63,9 +64,16 @@ const ProfilePage = () => {
         <div>
           <button onClick={handleRedirect}>Create farm</button>
         </div>
-        <div>
+        <div className={styles.products}>
           {farms.map((el) => {
-            return <FarmItem farm={el} key={el.Id} farms={farms}></FarmItem>;
+            return (
+              <FarmItem
+                farm={el}
+                key={el.Id}
+                farms={farms}
+                filter={filter}
+              ></FarmItem>
+            );
           })}
         </div>
       </div>

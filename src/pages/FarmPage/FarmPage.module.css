@@ -1,0 +1,29 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.buttons button {
+    background-color: beige;
+    border: none;
+    border-radius: 5px;
+    margin-left: 2%;
+    height: 30px;
+    cursor: pointer;
+}

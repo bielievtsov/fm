@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header div button {
+    background-color: rgba(57, 182, 182, 0.507);
+    margin-top: 3%;
+    width: max-content;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 30px;
+    margin-bottom: 3%;
+}
+
+.main {
+    background-color: teal;
+    font-size: 19px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding: 1%;
+}
