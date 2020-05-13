@@ -22,21 +22,21 @@ const CreateProduct = () => {
   };
 
   const handleCreation = () => {
-    const crD = new Date().toString();
-    console.log(name, description);
+    var bodyData = {
+      "FarmId": {
+        "Id": 2,
+      },
+      "PlanId": { "Id": 1 },
+      "Name": name,
+      "Description": description,
+      "Quantity": quantity,
+      "Price": price,
+      "Date": new Date().toJSON(),
+    }
+    console.log(bodyData);
     fetch("http://localhost:8080/v1/products/", {
       method: "POST",
-      body: {
-        FarmId: {
-          Id: 3,
-        },
-        PlanId: { Id: 1 },
-        Name: name,
-        Description: description,
-        Quantity: quantity,
-        Price: price,
-        Date: "2020-04-27T05:54:37.341966Z",
-      },
+      body: JSON.stringify(bodyData),
       headers: {
         "Content-Type": "application/json",
       },

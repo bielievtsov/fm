@@ -15,21 +15,19 @@ const CreateFarm = () => {
     }
   };
 
+  
   const handleCreation = () => {
-    const crD = new Date().toString();
-    console.log(name, description);
+    var bodyData = {
+      "CreationDate": new Date().toJSON(),
+      "UserId": {
+        "Id": 1
+      }, 
+      "Name": name, 
+      "Description": description
+    }
     fetch("http://localhost:8080/v1/farms/", {
       method: "POST",
-      body:
-        '{"CreationDate":' +
-        crD +
-        ', "UserId": {"Id": ' +
-        1 +
-        '}, "Name": "' +
-        name +
-        '", "Description": "' +
-        description +
-        '"}',
+      body: JSON.stringify(bodyData),
       headers: {
         "Content-Type": "application/json",
       },
