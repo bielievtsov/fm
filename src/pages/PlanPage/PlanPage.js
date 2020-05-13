@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import styles from "../../components/PlanItem/PlanComponent.module.css";
 import planPageStyles from "./PlanPage.module.css";
 import queryString from "query-string";
-import editIcon from "../../pictures/editIcon.png";
+import editIcon from "../../images/editIcon.png";
 
 const PlanPage = (props) => {
   const [plan, setPlan] = useState({});

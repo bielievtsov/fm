@@ -1,8 +1,8 @@
 FROM node:13.12.0-alpine
 
-WORKDIR /front
+WORKDIR /fm
 
-ENV PATH /front/node_modules/.bin:$PATH
+ENV PATH /fm/node_modules/.bin:$PATH
 
 COPY package*.json ./
 

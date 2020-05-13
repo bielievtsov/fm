@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import { withRouter } from "react-router-dom";
 import StatisticsItem from "../../components/Statisticsitem/StatisticsItem";
+import styles from "./farmStatistics.module.css";
 
 const FarmStatistics = (props) => {
   const [metrics, setMetrics] = useState([]);
+  const [m, setM] = useState([]);
 
   queryString.parse(props.location.search);
   const Id = props.location.state.farm.Id;
+
+  useEffect(() => {
+    fetch("http://localhost:8080/v1/farms/" + Id + "/stats")
+      .then((res) => res.json())
+      .then((data) => setMetrics(data.results))
+      .then(() => console.log(metrics));
+  });
 
   useEffect(() => {
     fetch("http://localhost:8080/v1/farms/" + Id + "/stats")
@@ -26,10 +35,7 @@ const FarmStatistics = (props) => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <img src={""}></img>
-      </div>
+    <div className={styles.main}>
       {metrics.map((metric) => {
         return (
           <StatisticsItem statistics={metric} key={metric.Id}></StatisticsItem>
