@@ -19,20 +19,17 @@ const EditPlanPage = (props) => {
 
   const handleEditSpecificPlan = () => {
     const Id = props.location.state.plan.Id;
-
     const userId = props.location.state.plan.UserId.Id;
-
+    var bodyData = {
+      "Id": Id,
+      "UserId": {
+        "Id": userId,
+      },
+      "Name": name,
+      "Description": description
+    }
     fetch("http://localhost:8080/v1/plans/" + Id, {
-      body:
-        '{"Id":' +
-        Id +
-        ', "UserId": {"Id": ' +
-        userId +
-        '}, "Name": "' +
-        name +
-        '", "Description": "' +
-        description +
-        '"}',
+      body: JSON.stringify(bodyData),
       headers: {
         "Content-Type": "application/json",
       },
