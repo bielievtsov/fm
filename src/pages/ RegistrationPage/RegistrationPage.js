@@ -108,7 +108,7 @@ const RegistrationForm = () => {
         <div>
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="type in password"
             className="form-control form-control"
@@ -117,7 +117,7 @@ const RegistrationForm = () => {
         <div>
           <label>Confirm Password</label>
           <input
-            type="text"
+            type="password"
             name="confirm-password"
             placeholder="type in password one more time"
             className="form-control form-control"

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import queryString from "query-string";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 const CreateProduct = (props) => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   queryString.parse(props.location.search);
 
@@ -45,30 +46,34 @@ const CreateProduct = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => console.log(res));
+    }).then((res) => setIsRedirect(!isRedirect));
   };
 
-  return (
-    <div onChange={handleChange}>
-      <div>
-        <div> description</div>
-        <input name="desc"></input>
+  if (isRedirect) {
+    return <Redirect to={{ pathname: "/" }}></Redirect>;
+  } else {
+    return (
+      <div onChange={handleChange}>
+        <div>
+          <div> description</div>
+          <input name="desc"></input>
+        </div>
+        <div>
+          <div> Quantity</div>
+          <input name="Quantity"></input>
+        </div>
+        <div>
+          <div> Price</div>
+          <input name="Price"></input>
+        </div>
+        <div>
+          <div> name</div>
+          <input name="name"></input>
+        </div>
+        <button onClick={handleCreation}>Submit</button>
       </div>
-      <div>
-        <div> Quantity</div>
-        <input name="Quantity"></input>
-      </div>
-      <div>
-        <div> Price</div>
-        <input name="Price"></input>
-      </div>
-      <div>
-        <div> name</div>
-        <input name="name"></input>
-      </div>
-      <button onClick={handleCreation}>Submit</button>
-    </div>
-  );
+    );
+  }
 };
 
 export default withRouter(CreateProduct);

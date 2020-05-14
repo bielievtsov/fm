@@ -6,21 +6,22 @@ import styles from "./farmStatistics.module.css";
 
 const FarmStatistics = (props) => {
   const [metrics, setMetrics] = useState([]);
-  const [sidematrics, setSideMetrics] = useState([]);
-
+  const [q, sq] = useState(true);
+  let i = 0;
   queryString.parse(props.location.search);
   const Id = props.location.state.farm.Id;
+
+  useEffect(async () => {
+    const data = await fetch("http://localhost:8080/v1/farms/" + 2 + "/stats");
+    const dataJSON = await data.json();
+    console.log(dataJSON);
+    setMetrics(dataJSON);
+  }, []);
 
   return (
     <div className={styles.main}>
       {metrics.map((metric) => {
-        return (
-          <StatisticsItem
-            statistics={metric}
-            key={metric.Id}
-            sidemetrics={sidematrics}
-          ></StatisticsItem>
-        );
+        return <StatisticsItem statistics={metric} key={i++}></StatisticsItem>;
       })}
     </div>
   );

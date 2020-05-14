@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "./StatisticsItem.module.css";
 
-const StatisticsItem = ({ statistics, sidemetrics = [] }) => {
-  let i;
-  let [metrics, setmetrics] = useState([]);
-  if (statistics.Id === 2 || statistics.Id === 3) {
-    i = require("../../images/metric_" + statistics.Id + ".png");
-  }
-  if (sidemetrics) {
-    metrics = metrics.filter((el) => el.Id === statistics.Id);
-    setmetrics(metrics);
-    console.log(metrics);
-  }
+const StatisticsItem = ({ statistics }) => {
+  let i = require("../../" + statistics.ImageUrl);
   return (
     <div className={styles.main}>
       {i ? <img src={i}></img> : <div></div>}
-      <div>Name : {statistics.Name}</div>
-      <div>Description : {statistics.Description}</div>
-      <div></div>
+      <div>Name : {statistics.MetricName}</div>
+      <div>Description : {statistics.MetricDescription}</div>
+      <div>Max : {statistics.Max}</div>
+      <div> Min : {statistics.Min}</div>
+      <div>Variance : {statistics.Variance}</div>
     </div>
   );
 };

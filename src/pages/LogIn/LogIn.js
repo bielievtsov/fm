@@ -81,7 +81,7 @@ const LoginForm = () => {
         <div>
           <label>Passowrd</label>
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="enter your password"
             className="form-control form-control"
