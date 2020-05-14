@@ -1,10 +1,10 @@
 .main {
-    background-color: teal;
+    background-color: blanchedalmond;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1%;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 300px;
 }
 

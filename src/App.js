@@ -11,6 +11,7 @@ import FarmPage from "./pages/FarmPage/FarmPage";
 import FarmStatistics from "./pages/FarmStatistics/FarmStatistics";
 import CreateFarm from "./pages/CreateFarm/CreateFarm";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
+import LoginForm from "./pages/LogIn/LogIn";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
       </Route>
       <Route path="/product/create/" exact>
         <CreateProduct></CreateProduct>
+      </Route>
+      <Route path="/login" exact>
+        <LoginForm></LoginForm>
       </Route>
     </div>
   );

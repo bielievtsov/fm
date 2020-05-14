@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import styles from "../../components/PlanItem/PlanComponent.module.css";
 import planPageStyles from "./PlanPage.module.css";
 import queryString from "query-string";
-import editIcon from "../../images/editIcon.png";
 
 const PlanPage = (props) => {
   const [plan, setPlan] = useState({});
@@ -29,11 +28,7 @@ const PlanPage = (props) => {
   if (isRedirect) {
     return (
       <div className={planPageStyles.main}>
-        <img
-          src={editIcon}
-          alt="edit icon"
-          onClick={handleRedirectToSpecificPlanEdit}
-        />
+        <img alt="edit icon" onClick={handleRedirectToSpecificPlanEdit} />
         <div className={styles.main} style={{ cursor: "default" }}>
           <div>
             <b>Plan name</b>

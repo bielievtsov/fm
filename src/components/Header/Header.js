@@ -12,6 +12,9 @@ const Header = () => {
       <div className={styles["header-right"]}>
         <NavLink to="/profile">Profile</NavLink>
       </div>
+      <div className={styles["header-right"]}>
+        <NavLink to="/login">Log In </NavLink>
+      </div>
     </div>
   );
 };
