@@ -58,12 +58,12 @@ const LoginForm = () => {
         "Content-Type": "application/json",
       },
     })
+      .then(response => response.json())
       .then((data) => {
         setCookie("user", data.Id);
         console.log(getCookie("user"));
-        return data.json();
+        console.log(data)
       })
-      .then((d) => console.log(d));
   };
 
   return (
