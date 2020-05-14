@@ -12,6 +12,7 @@ import FarmStatistics from "./pages/FarmStatistics/FarmStatistics";
 import CreateFarm from "./pages/CreateFarm/CreateFarm";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import LoginForm from "./pages/LogIn/LogIn";
+import RegistrationForm from "./pages/ RegistrationPage/RegistrationPage";
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
       </Route>
       <Route path="/login" exact>
         <LoginForm></LoginForm>
+      </Route>
+      <Route path="/registration" exact>
+        <RegistrationForm></RegistrationForm>
       </Route>
     </div>
   );

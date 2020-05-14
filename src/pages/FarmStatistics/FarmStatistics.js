@@ -11,14 +11,6 @@ const FarmStatistics = (props) => {
   queryString.parse(props.location.search);
   const Id = props.location.state.farm.Id;
 
-  useEffect(() => {
-    fetch("http://localhost:8080/v1/metrics/")
-      .then((res) => res.json())
-      .then((data) => {
-        setMetrics(data);
-      });
-  }, []);
-
   return (
     <div className={styles.main}>
       {metrics.map((metric) => {

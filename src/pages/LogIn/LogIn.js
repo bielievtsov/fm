@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../ RegistrationPage/RegistrationForm.module.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -57,16 +58,16 @@ const LoginForm = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
       .then((data) => {
-        alert(data);
         setCookie("user", data.Id);
         console.log(getCookie("user"));
-      });
+        return data.json();
+      })
+      .then((d) => console.log(d));
   };
 
   return (
-    <div>
+    <div className={styles.main}>
       <form onChange={handleFormChange}>
         <div>
           <label>Email</label>
@@ -86,8 +87,7 @@ const LoginForm = () => {
             className="form-control form-control"
           />
         </div>
-        <div>
-          <label>Submit</label>
+        <div className={styles.but}>
           <input
             type="submit"
             className="form-control form-control"

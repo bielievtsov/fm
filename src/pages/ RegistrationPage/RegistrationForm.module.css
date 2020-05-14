@@ -1,0 +1,13 @@
+.main {
+    background-color: rgba(73, 73, 255, 0.404);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.but {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
