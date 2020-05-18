@@ -9,7 +9,8 @@ const Header = (props) => {
 
   const handleRedirect = () => {
     localStorage.clear();
-    setIsRedirect(!isRedirect);
+    setIsRedirect(props.isLoggedIn);
+    props.LogIn();
   };
 
   if (isRedirect) {
@@ -38,7 +39,7 @@ const Header = (props) => {
         </div>
         <div
           className={styles["header-right"]}
-          style={{ display: props.isLoggedIn ? "block" : "none" }}
+          style={{ display: !props.isLoggedIn ? "block" : "none" }}
         >
           <NavLink to="/registration">Sign Up </NavLink>
         </div>
@@ -60,4 +61,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+const dispatchPropsToState = (dispatch) => {
+  return {
+    LogIn: () => {
+      dispatch({ type: "LOG_IN" });
+    },
+  };
+};
+
+export default connect(mapStateToProps, dispatchPropsToState)(Header);
