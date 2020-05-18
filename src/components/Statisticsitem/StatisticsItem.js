@@ -9,8 +9,9 @@ const StatisticsItem = ({ statistics }) => {
       <div>Name : {statistics.MetricName}</div>
       <div>Description : {statistics.MetricDescription}</div>
       <div>Max : {statistics.Max}</div>
-      <div> Min : {statistics.Min}</div>
+      <div>Min : {statistics.Min}</div>
       <div>Variance : {statistics.Variance}</div>
+      <div>Mean : {statistics.Mean}</div>
     </div>
   );
 };

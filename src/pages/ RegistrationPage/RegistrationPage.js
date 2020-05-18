@@ -39,14 +39,18 @@ const RegistrationForm = () => {
   };
 
   const createPeristeredUser = () => {
-    return {
-      firstName,
-      email,
-      password,
-      confirmPassword,
-      phone,
-      secondName: sname,
-    };
+    if (password === confirmPassword) {
+      return {
+        firstName,
+        email,
+        password,
+        confirmPassword,
+        phone,
+        secondName: sname,
+      };
+    } else {
+      alert("Passwords are not the same");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -103,6 +107,8 @@ const RegistrationForm = () => {
             name="email"
             placeholder="type in email"
             className="form-control form-control"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
           ></input>
         </div>
         <div>
@@ -112,6 +118,8 @@ const RegistrationForm = () => {
             name="password"
             placeholder="type in password"
             className="form-control form-control"
+            required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           ></input>
         </div>
         <div>
@@ -121,6 +129,8 @@ const RegistrationForm = () => {
             name="confirm-password"
             placeholder="type in password one more time"
             className="form-control form-control"
+            required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           ></input>
         </div>
         <div>

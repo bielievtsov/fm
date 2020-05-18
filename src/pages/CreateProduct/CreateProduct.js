@@ -50,7 +50,7 @@ const CreateProduct = (props) => {
   };
 
   if (isRedirect) {
-    return <Redirect to={{ pathname: "/" }}></Redirect>;
+    return <Redirect to={{ pathname: "/profile/" }}></Redirect>;
   } else {
     return (
       <div onChange={handleChange}>

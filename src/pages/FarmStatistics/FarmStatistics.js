@@ -11,11 +11,15 @@ const FarmStatistics = (props) => {
   queryString.parse(props.location.search);
   const Id = props.location.state.farm.Id;
 
-  useEffect(async () => {
-    const data = await fetch("http://localhost:8080/v1/farms/" + 2 + "/stats");
+  const fetchData = async () => {
+    const data = await fetch("http://localhost:8080/v1/farms/" + Id + "/stats");
     const dataJSON = await data.json();
     console.log(dataJSON);
     setMetrics(dataJSON);
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (

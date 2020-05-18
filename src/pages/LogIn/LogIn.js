@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import styles from "../ RegistrationPage/RegistrationForm.module.css";
+import { Redirect } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,37 +15,6 @@ const LoginForm = () => {
       setPassword(e.target.value);
     }
   };
-  const setCookie = (name, value) => {
-    deleteAllCookies();
-    document.cookie = `${name}=${value};max-age=${3600}`;
-  };
-
-  function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-
-  function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i];
-      var eqPos = cookie.indexOf("=");
-      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,45 +29,67 @@ const LoginForm = () => {
         "Content-Type": "application/json",
       },
     })
-      .then(response => response.json())
+      .then((response) => response.json())
       .then((data) => {
-        setCookie("user", data.Id);
-        console.log(getCookie("user"));
-        console.log(data)
-      })
+        localStorage.setItem("user", JSON.stringify(data));
+        props.LogIn();
+      });
   };
 
-  return (
-    <div className={styles.main}>
-      <form onChange={handleFormChange}>
-        <div>
-          <label>Email</label>
-          <input
-            type="text"
-            name="email"
-            placeholder="type in your email"
-            className="form-control form-control"
-          />
-        </div>
-        <div>
-          <label>Passowrd</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="enter your password"
-            className="form-control form-control"
-          />
-        </div>
-        <div className={styles.but}>
-          <input
-            type="submit"
-            className="form-control form-control"
-            onClick={handleSubmit}
-          />
-        </div>
-      </form>
-    </div>
-  );
+  if (!props.isLoggedIn) {
+    return (
+      <div className={styles.main}>
+        <form onChange={handleFormChange}>
+          <div>
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="type in your email"
+              className="form-control form-control"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+            />
+          </div>
+          <div>
+            <label>Passowrd</label>
+            <input
+              pattern=""
+              type="password"
+              name="password"
+              placeholder="enter your password"
+              className="form-control form-control"
+              required
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            />
+          </div>
+          <div className={styles.but}>
+            <input
+              type="submit"
+              className="form-control form-control"
+              onClick={handleSubmit}
+            />
+          </div>
+        </form>
+      </div>
+    );
+  } else {
+    return <Redirect to={{ pathname: "/" }}></Redirect>;
+  }
 };
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+  };
+};
+
+const dispatchPropsToState = (dispatch) => {
+  return {
+    LogIn: () => {
+      dispatch({ type: "LOG_IN" });
+    },
+  };
+};
+
+export default connect(mapStateToProps, dispatchPropsToState)(LoginForm);
