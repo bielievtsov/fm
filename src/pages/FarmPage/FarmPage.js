@@ -21,6 +21,7 @@ const FarmPage = (props) => {
       .then((resopse) => resopse.json())
       .then((data) => {
         const { Name, Description, CreationDate } = data;
+        console.log(data);
         setName(Name);
         setDescription(Description);
         setDate(CreationDate);

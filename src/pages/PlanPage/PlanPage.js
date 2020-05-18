@@ -8,6 +8,9 @@ import queryString from "query-string";
 const PlanPage = (props) => {
   const [plan, setPlan] = useState({});
   const [isRedirect, setIsRedirect] = useState(true);
+  const [userIdFarm, setUserId] = useState(0);
+
+  const userId = JSON.parse(localStorage.getItem("user")).Id;
 
   const handleRedirectToSpecificPlanEdit = () => {
     setIsRedirect(!isRedirect);
@@ -22,13 +25,20 @@ const PlanPage = (props) => {
       method: "GET",
     })
       .then((data) => data.json())
-      .then((dataInJSON) => setPlan(dataInJSON));
+      .then((dataInJSON) => {
+        setPlan(dataInJSON);
+        setUserId(dataInJSON.UserId.Id);
+      });
   }, []);
 
   if (isRedirect) {
     return (
       <div className={planPageStyles.main}>
-        <img alt="edit icon" onClick={handleRedirectToSpecificPlanEdit} />
+        <img
+          alt="edit icon"
+          onClick={handleRedirectToSpecificPlanEdit}
+          style={{ display: userId === userIdFarm ? "block" : "none" }}
+        />
         <div className={styles.main} style={{ cursor: "default" }}>
           <div>
             <b>Plan name</b>
