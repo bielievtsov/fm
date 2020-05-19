@@ -22,7 +22,11 @@ const ProfilePage = () => {
     setFarms(farmss);
   };
   useEffect(() => {
-    fetch(`http://localhost:8080/v1/users/1`)
+    fetch(
+      `http://localhost:8080/v1/users/${
+        JSON.parse(localStorage.getItem("user")).Id
+      }`
+    )
       .then((data) => data.json())
       .then((data) => {
         const { Email, FirstName, SecondName, Phone, Id } = data;
@@ -35,7 +39,11 @@ const ProfilePage = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/v1/farms/`)
+    fetch(
+      `http://localhost:8080/v1/farms/?query=UserId%3A${
+        JSON.parse(localStorage.getItem("user")).Id
+      })`
+    )
       .then((data) => data.json())
       .then((data) => {
         data.filter((el) => (el.UserId.Id = userId));
