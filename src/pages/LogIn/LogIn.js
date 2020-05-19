@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import styles from "../ RegistrationPage/RegistrationForm.module.css";
+import styles from "./LogIn.module.scss";
 import { Redirect } from "react-router-dom";
 
 const LoginForm = (props) => {
@@ -38,8 +38,9 @@ const LoginForm = (props) => {
 
   if (!props.isLoggedIn) {
     return (
-      <div className={styles.main}>
-        <form onChange={handleFormChange}>
+      <div className={styles["login-wrap"]}>
+        <h2>Login</h2>
+        <form onChange={handleFormChange} className={styles.form}>
           <div>
             <label>Email</label>
             <input
@@ -63,13 +64,13 @@ const LoginForm = (props) => {
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             />
           </div>
-          <div className={styles.but}>
-            <input
-              type="submit"
-              className="form-control form-control"
-              onClick={handleSubmit}
-            />
-          </div>
+          <button
+            type="submit"
+            className="form-control form-control"
+            onClick={handleSubmit}
+          >
+            Log in
+          </button>
         </form>
       </div>
     );

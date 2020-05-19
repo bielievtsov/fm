@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import queryString from "query-string";
 import { withRouter, Redirect } from "react-router-dom";
+import styles from "./CreateProduct.module.scss";
 
 const CreateProduct = (props) => {
   const [description, setDescription] = useState("");
@@ -53,24 +54,32 @@ const CreateProduct = (props) => {
     return <Redirect to={{ pathname: "/profile/" }}></Redirect>;
   } else {
     return (
-      <div onChange={handleChange}>
-        <div>
-          <div> description</div>
-          <input name="desc"></input>
+      <div onChange={handleChange} className={styles.wrapper}>
+        <div className={styles["form-signin"]}>
+          <h2 className={styles["form-signin-heading"]}>Product creating</h2>
+          <div className={styles["form-control"]}>
+            <div> Description</div>
+            <input name="desc"></input>
+          </div>
+          <div className={styles["form-control"]}>
+            <div> Quantity</div>
+            <input name="Quantity"></input>
+          </div>
+          <div className={styles["form-control"]}>
+            <div> Price</div>
+            <input name="Price"></input>
+          </div>
+          <div className={styles["form-control"]}>
+            <div> Name</div>
+            <input name="name"></input>
+          </div>
+          <button
+            onClick={handleCreation}
+            className={styles["btn btn-lg btn-primary btn-block"]}
+          >
+            Submit
+          </button>
         </div>
-        <div>
-          <div> Quantity</div>
-          <input name="Quantity"></input>
-        </div>
-        <div>
-          <div> Price</div>
-          <input name="Price"></input>
-        </div>
-        <div>
-          <div> name</div>
-          <input name="name"></input>
-        </div>
-        <button onClick={handleCreation}>Submit</button>
       </div>
     );
   }

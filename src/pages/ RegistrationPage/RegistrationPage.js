@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./RegistrationForm.module.css";
+import styles from "./RegistrationForm.module.scss";
 
 const RegistrationForm = () => {
   const [firstName, setNickname] = useState("");
@@ -68,11 +68,12 @@ const RegistrationForm = () => {
 
   return (
     <div
-      className={styles.main}
+      className={styles["login-wrap"]}
       onSubmit={handleSubmit}
       onChange={handleChange}
     >
-      <form>
+      <h2>Sign up</h2>
+      <form className={styles.form}>
         <div>
           <label>Name</label>
           <input
@@ -134,11 +135,13 @@ const RegistrationForm = () => {
           ></input>
         </div>
         <div>
-          <input
+          <button
             className={styles.but}
             type="submit"
             className="form-control form-control"
-          ></input>
+          >
+            Sign up
+          </button>
         </div>
       </form>
     </div>

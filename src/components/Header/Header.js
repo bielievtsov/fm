@@ -22,6 +22,13 @@ const Header = (props) => {
       <div
         className={styles["header-right"]}
         style={{ display: props.isLoggedIn ? "block" : "none" }}
+        onClick={handleRedirect}
+      >
+        <NavLink to="/">Log Out </NavLink>
+      </div>
+      <div
+        className={styles["header-right"]}
+        style={{ display: props.isLoggedIn ? "block" : "none" }}
       >
         <NavLink to="/guides">Guides</NavLink>
       </div>
@@ -42,13 +49,6 @@ const Header = (props) => {
         style={{ display: !props.isLoggedIn ? "block" : "none" }}
       >
         <NavLink to="/registration">Sign Up </NavLink>
-      </div>
-      <div
-        className={styles["header-right"]}
-        style={{ display: props.isLoggedIn ? "block" : "none" }}
-        onClick={handleRedirect}
-      >
-        <NavLink to="/">Log Out </NavLink>
       </div>
     </div>
   );

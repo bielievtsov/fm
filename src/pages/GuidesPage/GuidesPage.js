@@ -21,7 +21,7 @@ const GuidesPage = () => {
     return <Redirect to={{ pathname: "/plan_create" }}></Redirect>;
   } else {
     return (
-      <div>
+      <div className={styles.root}>
         <button onClick={handleRedirect}>Create plan</button>
         <div className={styles.main}>
           {plans.map((el) => {

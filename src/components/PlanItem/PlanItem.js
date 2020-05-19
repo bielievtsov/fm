@@ -24,13 +24,17 @@ const PlanItem = ({ plan }) => {
   if (isRedirect) {
     return (
       <div className={styles.main} onClick={handleRedirectToSpecificPlan}>
-        <button
-          onClick={handleDeletePlan}
-          style={{ display: userId === plan.UserId.Id ? "block" : "none" }}
-          name="del"
-        >
-          Delete
-        </button>
+        <div className={styles.box}>
+          <button
+            onClick={handleDeletePlan}
+            className={styles["btn btn-white btn-animation-1"]}
+            style={{ display: userId === plan.UserId.Id ? "block" : "none" }}
+            name="del"
+          >
+            Delete
+          </button>
+        </div>
+
         <div>
           <b>Plan name</b>
           <div>{plan.Name || "no plan name"}</div>

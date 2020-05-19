@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import queryString from "query-string";
+import styles from "./EditPlanPage.module.scss";
 
 const EditPlanPage = (props) => {
   const [plan, setPlan] = useState({});
@@ -21,20 +22,20 @@ const EditPlanPage = (props) => {
     const Id = props.location.state.plan.Id;
     const userId = props.location.state.plan.UserId.Id;
     var bodyData = {
-      "Id": Id,
-      "UserId": {
-        "Id": userId,
+      Id: Id,
+      UserId: {
+        Id: userId,
       },
-      "Name": name,
-      "Description": description
-    }
+      Name: name,
+      Description: description,
+    };
     fetch("http://localhost:8080/v1/plans/" + Id, {
       body: JSON.stringify(bodyData),
       headers: {
         "Content-Type": "application/json",
       },
       method: "PUT",
-    }).then(() => {
+    }).then((d) => {
       setIsRedirect(!isRedirect);
     });
   };
@@ -45,15 +46,34 @@ const EditPlanPage = (props) => {
 
   if (isRedirect) {
     return (
-      <div onChange={handleChange}>
-        <div>
-          <input defaultValue={plan.Name} name="name"></input>
-        </div>
-        <div>
-          <input defaultValue={plan.Description} name="description"></input>
-        </div>
-        <div>
-          <button onClick={handleEditSpecificPlan}>Submit edit</button>
+      <div onChange={handleChange} className={styles.wrapper}>
+        <div className={styles["form-signin"]}>
+          <h2 className={styles["form-signin-heading"]}>Plan Editing</h2>
+          <div>
+            <input
+              defaultValue={plan.Name}
+              name="name"
+              type="text"
+              className={styles["form-control"]}
+            ></input>
+          </div>
+          <div>
+            <input
+              defaultValue={plan.Description}
+              name="description"
+              type="text"
+              className={styles["form-control"]}
+            ></input>
+          </div>
+          <div>
+            <button
+              className={styles["btn btn-lg btn-primary btn-block"]}
+              type="submit"
+              onClick={handleEditSpecificPlan}
+            >
+              Submit edit
+            </button>
+          </div>
         </div>
       </div>
     );
