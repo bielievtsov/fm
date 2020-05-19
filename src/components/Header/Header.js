@@ -9,50 +9,50 @@ const Header = (props) => {
 
   const handleRedirect = () => {
     localStorage.clear();
-    setIsRedirect(props.isLoggedIn);
+    setIsRedirect(!isRedirect);
     props.LogIn();
   };
 
-  if (isRedirect) {
-    return <Redirect to={{ pathname: "/login" }}></Redirect>;
-  } else {
-    return (
-      <div className={styles.header}>
-        <NavLink to="/">Home Page</NavLink>
-        <div
-          className={styles["header-right"]}
-          style={{ display: !props.isLoggedIn ? "block" : "none" }}
-        >
-          <NavLink to="/guides">Guides</NavLink>
-        </div>
-        <div
-          className={styles["header-right"]}
-          style={{ display: !props.isLoggedIn ? "block" : "none" }}
-        >
-          <NavLink to="/profile">Profile</NavLink>
-        </div>
-        <div
-          className={styles["header-right"]}
-          style={{ display: props.isLoggedIn ? "block" : "none" }}
-        >
-          <NavLink to="/login">Log In </NavLink>
-        </div>
-        <div
-          className={styles["header-right"]}
-          style={{ display: !props.isLoggedIn ? "block" : "none" }}
-        >
-          <NavLink to="/registration">Sign Up </NavLink>
-        </div>
-        <div
-          className={styles["header-right"]}
-          style={{ display: !props.isLoggedIn ? "block" : "none" }}
-          onClick={handleRedirect}
-        >
-          <NavLink to="/registration">Log Out </NavLink>
-        </div>
+  //if (isRedirect) {
+  //return <Redirect to={{ pathname: "/login" }}></Redirect>;
+  //} else {
+  return (
+    <div className={styles.header}>
+      <NavLink to="/">Home Page</NavLink>
+      <div
+        className={styles["header-right"]}
+        style={{ display: props.isLoggedIn ? "block" : "none" }}
+      >
+        <NavLink to="/guides">Guides</NavLink>
       </div>
-    );
-  }
+      <div
+        className={styles["header-right"]}
+        style={{ display: props.isLoggedIn ? "block" : "none" }}
+      >
+        <NavLink to="/profile">Profile</NavLink>
+      </div>
+      <div
+        className={styles["header-right"]}
+        style={{ display: !props.isLoggedIn ? "block" : "none" }}
+      >
+        <NavLink to="/login">Log In </NavLink>
+      </div>
+      <div
+        className={styles["header-right"]}
+        style={{ display: !props.isLoggedIn ? "block" : "none" }}
+      >
+        <NavLink to="/registration">Sign Up </NavLink>
+      </div>
+      <div
+        className={styles["header-right"]}
+        style={{ display: props.isLoggedIn ? "block" : "none" }}
+        onClick={handleRedirect}
+      >
+        <NavLink to="/">Log Out </NavLink>
+      </div>
+    </div>
+  );
+  //}
 };
 
 const mapStateToProps = (state) => {
