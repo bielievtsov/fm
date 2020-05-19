@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from "./Header.module.css";
-import { Redirect } from "react-router-dom";
 
 const Header = (props) => {
   const [isRedirect, setIsRedirect] = useState(false);
@@ -18,16 +17,16 @@ const Header = (props) => {
   //} else {
   return (
     <div className={styles.header}>
-      <NavLink to="/">Home Page</NavLink>
+      <NavLink to="/">{strings.hPage}</NavLink>
       <div className={styles["header-right"]} onClick={props.changeLang}>
-        <button>Change lang </button>
+        <button>{strings.clang} </button>
       </div>
       <div
         className={styles["header-right"]}
         style={{ display: props.isLoggedIn ? "block" : "none" }}
         onClick={handleRedirect}
       >
-        <NavLink to="/">Log Out </NavLink>
+        <NavLink to="/">{strings.LogOut} </NavLink>
       </div>
       <div
         className={styles["header-right"]}
@@ -45,13 +44,13 @@ const Header = (props) => {
         className={styles["header-right"]}
         style={{ display: !props.isLoggedIn ? "block" : "none" }}
       >
-        <NavLink to="/login">Log In </NavLink>
+        <NavLink to="/login">{strings.LogIn} </NavLink>
       </div>
       <div
         className={styles["header-right"]}
         style={{ display: !props.isLoggedIn ? "block" : "none" }}
       >
-        <NavLink to="/registration">Sign Up </NavLink>
+        <NavLink to="/registration">{strings.signUpp} </NavLink>
       </div>
     </div>
   );

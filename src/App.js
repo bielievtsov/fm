@@ -54,6 +54,9 @@ let strings = new LocalizedStrings({
     cPassword: "confirm password",
     signUpp: "Sign Up",
     signUp: "Sign Up",
+    hPage: "Home Page",
+    clang: "Change language",
+    LogOut: "Log out",
   },
   ua: {
     welcome: "ЛАСКАВО ПРОСИМО ДО FISH FARM",
@@ -92,6 +95,9 @@ let strings = new LocalizedStrings({
     cPassword: "Підтвердження паролю",
     signUpp: "Реєстрація",
     signUp: "Зареєструватися",
+    hPage: "Домашня сторінка",
+    clang: "Змінити мову",
+    LogOut: "Вийти",
   },
 });
 
@@ -107,7 +113,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header changeLang={changeLang}></Header>
+      <Header changeLang={changeLang} strings={strings}></Header>
       <Route path="/" exact>
         <HomePage strings={strings}></HomePage>
       </Route>
