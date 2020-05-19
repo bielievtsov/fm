@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./ProductItem.module.css";
 
-const ProductItem = ({ product, filter }) => {
-  console.log(product);
+const ProductItem = ({ product, filter, strings }) => {
   const handleDelete = () => {
     console.log(product);
     fetch("http://localhost:8080/v1/products/" + product.Id, {
@@ -15,13 +14,25 @@ const ProductItem = ({ product, filter }) => {
   return (
     <div className={styles.main}>
       <div className={styles.submain}>
-        <div> Name {product.Name}</div>
-        <div> Description {product.Description || "no Description"}</div>
-        <div> Quantity {product.Quantity}</div>
-        <div> Price {product.Price}</div>
         <div>
           {" "}
-          Date of product creation :{" "}
+          {strings.productName} {product.Name}
+        </div>
+        <div>
+          {" "}
+          {strings.productDescription} {product.Description || "no Description"}
+        </div>
+        <div>
+          {" "}
+          {strings.productQuantity} {product.Quantity}
+        </div>
+        <div>
+          {" "}
+          {strings.productPrice} {product.Price}
+        </div>
+        <div>
+          {" "}
+          {strings.productDate} :{" "}
           {new Date(product.Date).getFullYear() +
             " month " +
             new Date(product.Date).getMonth() +
@@ -31,7 +42,7 @@ const ProductItem = ({ product, filter }) => {
       </div>{" "}
       <div>
         {" "}
-        <button onClick={handleDelete}>Delete</button>
+        <button onClick={handleDelete}>{strings.Delete}</button>
       </div>
     </div>
   );

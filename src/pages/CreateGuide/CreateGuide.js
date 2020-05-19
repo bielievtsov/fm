@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import styles from "./CreateGuide.module.scss";
 
-const CreateGuide = () => {
+const CreateGuide = ({ strings }) => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [isRedirect, setIsRedirect] = useState(false);
@@ -45,18 +45,18 @@ const CreateGuide = () => {
         <div className={styles["form-signin"]}>
           <h2 className={styles["form-signin-heading"]}>Guide creating</h2>
           <div className={styles["form-control"]}>
-            <div> description</div>
+            <div> {strings.Description}</div>
             <input name="desc"></input>
           </div>
           <div className={styles["form-control"]}>
-            <div> name</div>
+            <div> {strings.Name}</div>
             <input name="name"></input>
           </div>
           <button
             onClick={handleCreation}
             className={styles["btn btn-lg btn-primary btn-block"]}
           >
-            Submit
+            {strings.submit}
           </button>
         </div>
       </div>

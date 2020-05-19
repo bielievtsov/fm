@@ -7,6 +7,8 @@ const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { strings } = props;
+
   const handleFormChange = (e) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
@@ -39,10 +41,10 @@ const LoginForm = (props) => {
   if (!props.isLoggedIn) {
     return (
       <div className={styles["login-wrap"]}>
-        <h2>Login</h2>
+        <h2>{strings.LogIn}</h2>
         <form onChange={handleFormChange} className={styles.form}>
           <div>
-            <label>Email</label>
+            <label>{strings.email}</label>
             <input
               type="text"
               name="email"
@@ -53,7 +55,7 @@ const LoginForm = (props) => {
             />
           </div>
           <div>
-            <label>Passowrd</label>
+            <label>{strings.Password}</label>
             <input
               pattern=""
               type="password"
@@ -69,7 +71,7 @@ const LoginForm = (props) => {
             className="form-control form-control"
             onClick={handleSubmit}
           >
-            Log in
+            {strings.LogIn}
           </button>
         </form>
       </div>

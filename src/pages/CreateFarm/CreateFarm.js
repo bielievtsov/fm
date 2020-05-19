@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import styles from "./CreateFarm.module.scss";
 
-const CreateFarm = () => {
+const CreateFarm = ({ strings }) => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [isRedirect, setIsRedirect] = useState(false);
@@ -43,18 +43,18 @@ const CreateFarm = () => {
         <div className={styles["form-signin"]}>
           <h2 className={styles["form-signin-heading"]}>Farm creating</h2>
           <div className={styles["form-control"]}>
-            <div>Farm's description</div>
+            <div>{strings.farmDesc}</div>
             <input name="desc"></input>
           </div>
           <div className={styles["form-control"]}>
-            <div>Name of the farm</div>
+            <div>{strings.farmName}</div>
             <input name="name"></input>
           </div>
           <button
             onClick={handleCreation}
             className={styles["btn btn-lg btn-primary btn-block"]}
           >
-            Submit
+            {strings.submit}
           </button>
         </div>
       </div>

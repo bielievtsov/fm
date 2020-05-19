@@ -11,6 +11,8 @@ const FarmStatistics = (props) => {
   queryString.parse(props.location.search);
   const Id = props.location.state.farm.Id;
 
+  const { strings } = props;
+
   const fetchData = async () => {
     const data = await fetch("http://localhost:8080/v1/farms/" + Id + "/stats");
     const dataJSON = await data.json();
@@ -25,7 +27,13 @@ const FarmStatistics = (props) => {
   return (
     <div className={styles.main}>
       {metrics.map((metric) => {
-        return <StatisticsItem statistics={metric} key={i++}></StatisticsItem>;
+        return (
+          <StatisticsItem
+            statistics={metric}
+            key={i++}
+            strings={strings}
+          ></StatisticsItem>
+        );
       })}
     </div>
   );

@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import styles from "./PlanComponent.module.css";
 
-const PlanItem = ({ plan }) => {
+const PlanItem = ({ plan, strings }) => {
   const [isRedirect, setIsRedirect] = useState(true);
 
   const handleRedirectToSpecificPlan = () => {
@@ -31,16 +31,16 @@ const PlanItem = ({ plan }) => {
             style={{ display: userId === plan.UserId.Id ? "block" : "none" }}
             name="del"
           >
-            Delete
+            {strings.Delete}
           </button>
         </div>
 
         <div>
-          <b>Plan name</b>
+          <b>{strings.planName}</b>
           <div>{plan.Name || "no plan name"}</div>
         </div>
         <div>
-          <b>Plan Description</b>
+          <b>{strings.planDesc}</b>
           <div>{plan.Description || "no description"}</div>
         </div>
       </div>

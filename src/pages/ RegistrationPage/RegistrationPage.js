@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RegistrationForm.module.scss";
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ strings }) => {
   const [firstName, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,10 +72,10 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
       onChange={handleChange}
     >
-      <h2>Sign up</h2>
+      <h2>{strings.signUpp}</h2>
       <form className={styles.form}>
         <div>
-          <label>Name</label>
+          <label>{strings.userName}</label>
           <input
             type="text"
             name="nickname"
@@ -84,7 +84,7 @@ const RegistrationForm = () => {
           ></input>
         </div>
         <div>
-          <label>Second name</label>
+          <label>{strings.sname}</label>
           <input
             type="text"
             name="sname"
@@ -93,7 +93,7 @@ const RegistrationForm = () => {
           ></input>
         </div>
         <div>
-          <label>Phone number</label>
+          <label>{strings.userPhone}</label>
           <input
             type="text"
             name="phone"
@@ -102,7 +102,7 @@ const RegistrationForm = () => {
           ></input>
         </div>
         <div>
-          <label>Email</label>
+          <label>{strings.email}</label>
           <input
             type="text"
             name="email"
@@ -113,7 +113,7 @@ const RegistrationForm = () => {
           ></input>
         </div>
         <div>
-          <label>Password</label>
+          <label>{strings.Password}</label>
           <input
             type="password"
             name="password"
@@ -124,7 +124,7 @@ const RegistrationForm = () => {
           ></input>
         </div>
         <div>
-          <label>Confirm Password</label>
+          <label>{strings.cPassword}</label>
           <input
             type="password"
             name="confirm-password"
@@ -140,7 +140,7 @@ const RegistrationForm = () => {
             type="submit"
             className="form-control form-control"
           >
-            Sign up
+            {strings.signUp}
           </button>
         </div>
       </form>

@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import styles from "./FarmItem.module.css";
 
-const FarmItem = ({ farm, filter }) => {
+const FarmItem = ({ farm, filter, strings }) => {
   const [isRedirect, serIsRedirect] = useState(true);
 
   const handleIsRedirect = () => {
@@ -23,10 +23,10 @@ const FarmItem = ({ farm, filter }) => {
     return (
       <div className={styles.main}>
         <button onClick={handleDelete} name="but">
-          Delete
+          {strings.Delete}
         </button>
         <div onClick={handleIsRedirect}>
-          Farm name : <span> {farm.Name} </span>
+          {strings.farmName} : <span> {farm.Name} </span>
         </div>
       </div>
     );

@@ -14,6 +14,8 @@ const FarmPage = (props) => {
 
   queryString.parse(props.location.search);
 
+  const { strings } = props;
+
   useEffect(() => {
     const Id = props.location.state.farm.Id;
 
@@ -73,10 +75,14 @@ const FarmPage = (props) => {
     return (
       <div>
         <div className={styles.header}>
-          <div>Name : {name}</div>
-          <div>Description : {description}</div>
           <div>
-            Date of farm creation :{" "}
+            {strings.Name} : {name}
+          </div>
+          <div>
+            {strings.Description} : {description}
+          </div>
+          <div>
+            {strings.farmDate} :{" "}
             {new Date(date).getFullYear() +
               " month " +
               new Date(date).getMonth() +
@@ -85,15 +91,16 @@ const FarmPage = (props) => {
           </div>
         </div>
         <div className={styles.buttons}>
-          <button onClick={handleRedirect}>Statistics</button>
+          <button onClick={handleRedirect}>{strings.statistics}</button>
           <button onClick={handleRedirectCreateProduct}>
-            Create new product
+            {strings.creteNewProduct}
           </button>
         </div>
         <div className={styles.main}>
           {products.map((product) => {
             return (
               <ProductItem
+                strings={strings}
                 product={product}
                 key={product.Id}
                 filter={filter}

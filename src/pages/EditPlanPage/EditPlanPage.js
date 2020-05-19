@@ -11,6 +11,8 @@ const EditPlanPage = (props) => {
 
   queryString.parse(props.location.search);
 
+  const { strings } = props;
+
   const [isRedirect, setIsRedirect] = useState(true);
 
   const handleChange = (e) => {
@@ -71,7 +73,7 @@ const EditPlanPage = (props) => {
               type="submit"
               onClick={handleEditSpecificPlan}
             >
-              Submit edit
+              {strings.submitEdit}
             </button>
           </div>
         </div>

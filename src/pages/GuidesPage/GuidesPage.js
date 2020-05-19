@@ -3,7 +3,7 @@ import styles from "./GuidesPage.module.css";
 import { Redirect } from "react-router-dom";
 import PlanItem from "../../components/PlanItem/PlanItem";
 
-const GuidesPage = () => {
+const GuidesPage = ({ strings }) => {
   const [plans, setPlans] = useState([]);
   const [isRedirect, setIsRedirect] = useState(false);
 
@@ -22,10 +22,10 @@ const GuidesPage = () => {
   } else {
     return (
       <div className={styles.root}>
-        <button onClick={handleRedirect}>Create plan</button>
+        <button onClick={handleRedirect}>{strings.createPlan}</button>
         <div className={styles.main}>
           {plans.map((el) => {
-            return <PlanItem plan={el} key={el.Id} />;
+            return <PlanItem plan={el} key={el.Id} strings={strings} />;
           })}
         </div>
       </div>

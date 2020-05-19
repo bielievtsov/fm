@@ -19,6 +19,9 @@ const Header = (props) => {
   return (
     <div className={styles.header}>
       <NavLink to="/">Home Page</NavLink>
+      <div className={styles["header-right"]} onClick={props.changeLang}>
+        <button>Change lang </button>
+      </div>
       <div
         className={styles["header-right"]}
         style={{ display: props.isLoggedIn ? "block" : "none" }}

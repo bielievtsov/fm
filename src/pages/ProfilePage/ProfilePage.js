@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import FarmItem from "../../components/FarmItem/FarmItem";
 import styles from "./ProfilePage.module.css";
 
-const ProfilePage = () => {
+const ProfilePage = ({ strings }) => {
   const [name, setName] = useState("");
   const [sname, setSName] = useState("");
   const [phone, setPhone] = useState("");
@@ -42,10 +42,11 @@ const ProfilePage = () => {
     fetch(
       `http://localhost:8080/v1/farms/?query=UserId%3A${
         JSON.parse(localStorage.getItem("user")).Id
-      })`
+      }`
     )
       .then((data) => data.json())
       .then((data) => {
+        console.log(data);
         data.filter((el) => (el.UserId.Id = userId));
         setFarms(data);
       });
@@ -60,17 +61,17 @@ const ProfilePage = () => {
       <div className={styles.header}>
         <div className={styles.main}>
           <div>
-            Name <span>{name}</span> <span>{sname}</span>
+            {strings.userName}: <span>{name}</span> <span>{sname}</span>
           </div>
           <div>
-            Phone: <span>{phone}</span>
+            {strings.userPhone}: <span>{phone}</span>
           </div>
           <div>
-            Email: <span>{email}</span>
+            {strings.email}: <span>{email}</span>
           </div>
         </div>
         <div>
-          <button onClick={handleRedirect}>Create farm</button>
+          <button onClick={handleRedirect}>{strings.createFarm}</button>
         </div>
         <div className={styles.products}>
           {farms.map((el) => {
@@ -80,6 +81,7 @@ const ProfilePage = () => {
                 key={el.Id}
                 farms={farms}
                 filter={filter}
+                strings={strings}
               ></FarmItem>
             );
           })}

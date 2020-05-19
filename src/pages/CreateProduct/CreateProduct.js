@@ -10,6 +10,8 @@ const CreateProduct = (props) => {
   const [price, setPrice] = useState(0);
   const [isRedirect, setIsRedirect] = useState(false);
 
+  const { strings } = props;
+
   queryString.parse(props.location.search);
 
   const handleChange = (e) => {
@@ -58,26 +60,26 @@ const CreateProduct = (props) => {
         <div className={styles["form-signin"]}>
           <h2 className={styles["form-signin-heading"]}>Product creating</h2>
           <div className={styles["form-control"]}>
-            <div> Description</div>
+            <div> {strings.Description}</div>
             <input name="desc"></input>
           </div>
           <div className={styles["form-control"]}>
-            <div> Quantity</div>
+            <div> {strings.Quantity}</div>
             <input name="Quantity"></input>
           </div>
           <div className={styles["form-control"]}>
-            <div> Price</div>
+            <div> {strings.Price}</div>
             <input name="Price"></input>
           </div>
           <div className={styles["form-control"]}>
-            <div> Name</div>
+            <div> {strings.Name}</div>
             <input name="name"></input>
           </div>
           <button
             onClick={handleCreation}
             className={styles["btn btn-lg btn-primary btn-block"]}
           >
-            Submit
+            {strings.submit}
           </button>
         </div>
       </div>

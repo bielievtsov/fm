@@ -12,6 +12,8 @@ const PlanPage = (props) => {
 
   const userId = JSON.parse(localStorage.getItem("user")).Id;
 
+  const { strings } = props;
+
   const handleRedirectToSpecificPlanEdit = () => {
     setIsRedirect(!isRedirect);
   };
@@ -41,20 +43,20 @@ const PlanPage = (props) => {
         />
         <div className={styles.main} style={{ cursor: "default" }}>
           <div>
-            <b>Plan name</b>
+            <b>{strings.planName}</b>
             <div>{plan.Name || "no plan name"}</div>
           </div>
           <div>
-            <b>Plan Description</b>
+            <b>{strings.planDesc}</b>
             <div>{plan.Description || "no description"}</div>
           </div>
           <div className={planPageStyles.userInfo}>
             <div>
-              <b>User</b>
+              <b>{strings.user}</b>
               <div>{plan.FirstName || "no FirstName"}</div>
             </div>
             <div>
-              <b>User email</b>
+              <b>{strings.email}</b>
               <div>{plan.Email || "no Email"}</div>
             </div>
           </div>
