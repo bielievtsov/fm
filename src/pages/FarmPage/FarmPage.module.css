@@ -1,0 +1,21 @@
+.buts {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    margin-top: 3%;
+    margin-left: 40%;
+}
+
+.info {
+    background-color: rgba(222, 184, 135, 0.082);
+    font-size: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.list {
+    background-color: burlywood;
+}

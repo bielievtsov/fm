@@ -1,0 +1,7 @@
+.main {
+    background-color: rgba(46, 248, 255, 0.383);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}

@@ -1,0 +1,10 @@
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    background-color: rgba(165, 42, 42, 0.089);
+    margin: 1%;
+    cursor: pointer;
+}

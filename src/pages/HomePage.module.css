@@ -1,0 +1,7 @@
+.main {
+    font-size: 54px;
+    background-color: aqua;
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+}
