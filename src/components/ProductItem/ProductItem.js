@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "react-bootstrap";
+import styles from "./ProductItem.module.css";
 
 const ProductItem = ({ product, filter, strings }) => {
   const handleDelete = () => {
@@ -11,7 +13,7 @@ const ProductItem = ({ product, filter, strings }) => {
   };
 
   return (
-    <div>
+    <div className={styles.main}>
       <div>
         <div>
           {" "}
@@ -39,9 +41,11 @@ const ProductItem = ({ product, filter, strings }) => {
             new Date(product.Date).getDate()}
         </div>
       </div>{" "}
-      <div>
+      <div className={styles.buts}>
         {" "}
-        <button onClick={handleDelete}>{strings.Delete}</button>
+        <Button variant="danger" style={{ width: 200 }} onClick={handleDelete}>
+          {strings.Delete}
+        </Button>
       </div>
     </div>
   );
