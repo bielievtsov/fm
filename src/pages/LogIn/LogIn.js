@@ -45,7 +45,7 @@ const LoginForm = (props) => {
         <h2>{strings.LogIn}</h2>
         <Form
           onChange={handleFormChange}
-          controlId="formBasicEmail"
+          controlid="formBasicEmail"
           style={{ width: 400, marginTop: 0 }}
           className={styles.main}
         >

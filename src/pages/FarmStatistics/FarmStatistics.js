@@ -15,7 +15,6 @@ const FarmStatistics = (props) => {
   const fetchData = async () => {
     const data = await fetch("http://localhost:8080/v1/farms/" + Id + "/stats");
     const dataJSON = await data.json();
-    console.log(dataJSON);
     setMetrics(dataJSON);
   };
 
@@ -23,19 +22,23 @@ const FarmStatistics = (props) => {
     fetchData();
   }, []);
 
-  return (
-    <div>
-      {metrics.map((metric) => {
-        return (
-          <StatisticsItem
-            statistics={metric}
-            key={i++}
-            strings={strings}
-          ></StatisticsItem>
-        );
-      })}
-    </div>
-  );
+  if (metrics.length) {
+    return (
+      <div>
+        {metrics.map((metric) => {
+          return (
+            <StatisticsItem
+              statistics={metric}
+              key={i++}
+              strings={strings}
+            ></StatisticsItem>
+          );
+        })}
+      </div>
+    );
+  } else {
+    return <div>No metrics so far...</div>;
+  }
 };
 
 export default withRouter(FarmStatistics);

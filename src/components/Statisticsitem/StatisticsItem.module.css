@@ -1,0 +1,23 @@
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.img {
+    width: 1300px;
+    height: 600px;
+}
+
+.info {
+    font-size: 34px;
+}
+
+.header {
+    background-color: rgb(26, 228, 235);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

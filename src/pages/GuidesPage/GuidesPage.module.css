@@ -1,10 +1,10 @@
 .main {
-    background-color: rgba(42, 106, 165, 0.239);
-    justify-content: center;
+    background-color: rgba(21, 212, 212, 0.836);
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin: 5px;
+    justify-content: center;
 }
 
 .root {
